@@ -1,6 +1,6 @@
 
 import { Outlet,Navigate } from 'react-router-dom';
-import AuthImage from "../../public/assets/images/side-img.svg"
+import AuthImage from "../../public/assets/images/authImage1.jpg"
 
 
 

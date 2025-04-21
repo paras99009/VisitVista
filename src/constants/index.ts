@@ -19,6 +19,7 @@ export const sidebarLinks = [
       imgURL: "/assets/images/artificial-intelligence-ai-icon.svg",
       route: "/ai-chat",
       label: "AI Chat",
+      color:"white"
     },
   ];
   

@@ -50,7 +50,7 @@ function LeftSideBar() {
               <li key={link.label} style={{borderRadius:"20px"}} className={`leftsidebar-link group  ${isActive&& 'bg-primary-500'}`} >
 
               <NavLink to={link.route} className="flex gap-4  items-center p-4" >
-                <img src={link.imgURL} alt={link.label} className={` h-8 w-8 custom-color group-hover:invert-white ${isActive && 'invert-white'}`}/>
+                <img src={link.imgURL} alt={link.label} className={` h-8 w-8 custom-color invert-white ${isActive && 'invert-white'}`}/>
                 {link.label}
 
               </NavLink>

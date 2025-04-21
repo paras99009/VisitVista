@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 
 import { SignupValidation } from "@/validation";
 import { createUserAccount } from "@/lib/appwrite/api";
+import { MapPin } from "lucide-react";
 
 
 
@@ -62,9 +63,9 @@ const navigate = useNavigate();
   return (
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
-        <img src="/assets/images/logo.svg" alt="logo" />
+      <h1 className="text-5xl text-bold flex flex-col gap-2"><span><MapPin height={47} width={37}/></span> <p>Visit Vista</p></h1>
 
-        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
+        <h2 className="h3-bold md:h2-bold ">
           Create a new account
         </h2>
         <p className="text-light-3 small-medium md:base-regular mt-2">

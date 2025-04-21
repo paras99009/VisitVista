@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/context/AuthContext";
 import { SigninValidation } from "@/validation";
 import { signInAccount } from "@/lib/appwrite/api";
-import { Loader } from "lucide-react";
+import { Loader, MapPin } from "lucide-react";
 
 
 const SignInForm = () => {
@@ -57,7 +57,8 @@ const SignInForm = () => {
   return (
     <Form {...form}>
     <div className="sm:w-420 flex-center flex-col">
-      <img src="/assets/images/logo.svg" alt="logo" />
+    <h1 className="text-5xl text-bold flex flex-col gap-2"><span><MapPin height={47} width={37}/></span> <p>Visit Vista</p></h1>
+
 
       <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
         Log in to your account
