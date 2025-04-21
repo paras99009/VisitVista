@@ -2,7 +2,7 @@ import PlaceCard from '@/components/shared/PlaceCard'
 import {  topPlacesFavourite } from '@/lib/appwrite/api'
 import { Models } from 'appwrite'
 import { Loader } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 
 function TopFavouritePLaces() {
 

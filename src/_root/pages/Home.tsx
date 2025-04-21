@@ -1,4 +1,4 @@
-import React from 'react'
+
 import TopCategory from './home/TopCategory'
 import TopWeekPlaces from './home/TopWeekPlaces'
 import TopSuggestedPlaces from './home/TopSuggestedPlaces'

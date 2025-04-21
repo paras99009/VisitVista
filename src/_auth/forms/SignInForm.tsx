@@ -7,9 +7,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-import { useToast } from "@/hooks/use-toast";
-
-
 import { useUserContext } from "@/context/AuthContext";
 import { SigninValidation } from "@/validation";
 import { signInAccount } from "@/lib/appwrite/api";
@@ -17,7 +14,7 @@ import { Loader } from "lucide-react";
 
 
 const SignInForm = () => {
-  const { toast } = useToast();
+  
   const navigate = useNavigate();
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
 
@@ -36,7 +33,7 @@ const SignInForm = () => {
     const session = await signInAccount(user);
    console.log(session)
     if (!session) {
-      toast({ title: "Login failed. Please try again." });
+      console.log({ title: "Login failed. Please try again." });
       return;
     }
 
@@ -47,7 +44,7 @@ const SignInForm = () => {
 
       navigate("/");
     } else {
-      toast({ title: "Login failed. Please try again.", });
+      console.log({ title: "Login failed. Please try again.", });
       
       return;
     }

@@ -1,5 +1,5 @@
 import PostForm from '@/components/shared/PostForm'
-import React from 'react'
+
 
 function CreatePlace() {
   return (

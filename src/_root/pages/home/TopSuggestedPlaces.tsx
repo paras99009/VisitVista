@@ -2,14 +2,13 @@ import  { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
 import { topSuggestedPlaces } from "@/lib/appwrite/api";
 import PlaceCard from "@/components/shared/PlaceCard";
+import { Models } from "appwrite";
 
-type Place = {
-  $id: string;
+type Place = Models.Document & {
   name: string;
   location: string;
   imageUrl: string;
 };
-
 const TopSuggestedPlaces = () => {
   const [place, setPlace] = useState<Place[]>([]);
   const [loading, setLoading] = useState(true);

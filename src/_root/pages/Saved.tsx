@@ -11,9 +11,9 @@ import { useEffect, useState } from "react";
 const Saved = () => {
 
     
-    const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState<Models.Document | null>(null);
     const [savePosts, setSavePosts] = useState([]);
-    const [loading, setLoading] = useState(true);
+   
   
     useEffect(() => {
       const fetchSavedPosts = async () => {
@@ -42,9 +42,7 @@ const Saved = () => {
         } catch (error) {
           console.error("Error fetching saved posts:", error);
           setSavePosts([]);
-        } finally {
-          setLoading(false);
-        }
+        } 
       };
   
       fetchSavedPosts();

@@ -18,10 +18,8 @@ import FormUploader from "./FormUploader";
 import { PlaceValidation } from "@/validation";
 import { Models } from 'appwrite';
 import { createPost } from "@/lib/appwrite/api";
-import { toast } from "@/hooks/use-toast";
 import { useUserContext } from '@/context/AuthContext';
-// import { toast } from '@/hooks/use-toast';
-// import { Loader } from 'lucide-react';
+
 
 
  //defining the post type 
@@ -69,7 +67,7 @@ const PostForm = ({ post, action } : PostFormProps) => {
                 tags: values.tags ?? "", // ✅ tags should remain a string, not array
               });
               if(!newPost){
-                toast({
+                console.log({
                   title:"PLease Try Again"
                 })
               }
