@@ -12,6 +12,7 @@ import Saved from './_root/pages/Saved'
 import Explore from './_root/pages/Explore'
 import PlaceDetails from './_root/pages/Placedetail'
 import AiChat from './_root/pages/AiChat'
+import Admin from './_root/pages/Admin'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
       {/* Main Routes */}
       <Route element={<RootLayout/>}>
       <Route path="/" element={<Home/>} />
+      <Route path="/dashboard/admin" element={<Admin/>} />
       <Route path="/create" element={<CreatePlace/>} />
       <Route path="/saved" element={<Saved/>} />
       <Route path="/explore" element={<Explore/>} />

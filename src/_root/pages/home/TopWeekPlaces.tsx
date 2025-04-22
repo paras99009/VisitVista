@@ -33,7 +33,7 @@ function TopWeekPlaces() {
   return (
 <div className='w-full shadow-md flex flex-col  justify-start  gap-4 items-center'>
   <h1 className='text-2xl md:text-4xl font-bold px-4 mt-4 mb-4  items-center'>Top Places this Month</h1> 
-  <div className="w-full flex flex-wrap  justify-center p-4 gap-4 items-center">
+  <div className="w-full flex flex-wrap  justify-center p-4 gap-5 items-center">
     {
       loading ? (
         

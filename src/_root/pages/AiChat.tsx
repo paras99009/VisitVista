@@ -73,14 +73,14 @@ function AiChat() {
       <div className=" m-1   rounded-xl  bg-gray-700 p-4 flex items-center gap-2">
         <input 
           type="text" 
-          placeholder="Type your message..." 
+          placeholder="Write your prompt here to get iternaries, suggestions and day planner..." 
           value={input}
           onChange={(e) => setInput(e.target.value)}
           className="w-full p-2 rounded-lg  focus:outline-none focus:ring-0 bg-gray-700 text-white" 
         />
         <button 
           onClick={onSent} 
-          className="bg-light-4 text-white p-2 rounded-lg flex items-center w-13 rounded-xl"
+          className="bg-light-4 text-white p-2  flex items-center w-13 rounded-xl"
         >
           <p className="hidden md:block">
           Send

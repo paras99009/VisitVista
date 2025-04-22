@@ -42,9 +42,9 @@ const PlaceDetails = () => {
     <div>
         <p className='m-4 text-md md:text-2xl'>
        You can also search these categories 
-        <p className='text-light-3 text-sm md:text-xl'>
+        <span className='text-light-3 text-sm md:text-xl'>
                 {post?.mood?.join(', ') || 'Not specified'}
-        </p>
+        </span>
         </p>
 
   
