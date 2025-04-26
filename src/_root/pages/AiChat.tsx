@@ -16,7 +16,7 @@ function AiChat() {
     
     <div className="m-4 h-screen  overflow-y-auto hide-scrollbar">
       <p className="text-light-3 text-sm md:text-xl">
-        Chat with our AI to get personalized recommendations and answers to your questions.
+      🌍 Hey there, traveler! Ready to explore? I'm your virtual travel buddy here to help you discover amazing places, plan perfect dates, or sort out any location troubles. Just ask me anything related to travel, tourism, or planning your next adventure! ✈️✨
       </p>
 
       {/* First AI message */}
@@ -28,7 +28,26 @@ function AiChat() {
             alt="ai-logo" 
           />
           <div className="border-light-4 max-w-md md:max-w-lg border-2 rounded-xl p-4 mt-4 bg-gray-600">
-          🌍 Hey there, traveler! Ready to explore? I'm your virtual travel buddy here to help you discover amazing places, plan perfect dates, or sort out any location troubles. Just ask me anything related to travel, tourism, or planning your next adventure! ✈️✨
+            Hey ! there is a lot to explore in Kanpur. I can help you with that.
+            <br/>
+            this  is example prompt for you to plan a day in Kanpur:
+            <br/>
+          
+          <p className="text-light-3 text-sm md:text-xl">
+          Hey, I’m planning to explore Kanpur for a day. I want a list of the best places to visit, including hidden gems, famous spots, and cool cafes. Also, can you create a full-day itinerary for me starting from morning to evening based on the following preferences:
+
+Mood: [e.g., peaceful, adventurous, cultural, romantic]
+
+Interests: [e.g., history, shopping, nature, cafes, nightlife]
+
+Travel type: [solo, friends, couple, family]
+
+Time Available: [e.g., 9 AM to 8 PM]
+
+Budget: [e.g., low, medium, luxury]
+
+Include travel times, best food spots along the way, and any unique experiences Kanpur has to offer. Keep the flow smooth and relaxing
+          </p>
 
           </div>
         </div>

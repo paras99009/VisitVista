@@ -8,7 +8,7 @@ useQueryClient,
 useInfiniteQuery
 
 } from '@tanstack/react-query'
-import {  createUserAccount, deleteSavedPost,getCurrentUser,getInfinitePlace,getPlaceById,likePost, savePost, searchPost, signInAccount, signOutAccount} from '../api'
+import {  createUserAccount, deleteSavedPost,getCurrentUser,getInfinitePlace,getPlaceById,getUsers,likePost, savePost, searchPost, signInAccount, signOutAccount} from '../api'
 import { QUERY_KEYS } from './queryKeys';
 
 
@@ -162,5 +162,13 @@ export const useGetCurrentUser = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_CURRENT_USER],
     queryFn: getCurrentUser,
+  });
+};
+
+
+export const useGetUsers = (limit?: number) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_USERS],
+    queryFn: () => getUsers(limit),
   });
 };

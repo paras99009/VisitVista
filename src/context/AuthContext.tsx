@@ -69,6 +69,15 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   const [result, setResult] = useState("");
   const [hasCheckedAuth, setHasCheckedAuth] = useState(false); // Prevent multiple auth checks
 
+  const delayPara = (index:number,nextWord:string)=>{
+    setTimeout(function()  {
+      setResult(prev=>prev+nextWord)
+      
+    }, 75*index);
+   }
+   
+
+
   const onSent = async () => {
     setResult("");
     setLoading(true);
@@ -88,10 +97,18 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
         newRes += "<b>" + response1[i] + "</b>";
       }
     }
-    setResult(newRes);
+    const newRes2 = newRes.split("**").join("<br/>").replace(/\*/g, "<br/>");
+    const newResponseArray = newRes2.split(" ");
     setShowResult(true);
+    for (let i = 0; i < newResponseArray.length; i++) {
+      const nextWord = newResponseArray[i] + " ";
+      delayPara(i,nextWord);
+    }
+    setInput("")
+
+      
     setLoading(false);
-    setInput("");
+    
   };
 
   const checkAuthUser = async (): Promise<boolean> => {

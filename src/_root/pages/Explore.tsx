@@ -68,8 +68,8 @@ const Explore = () => {
 
 
   const searchUsingCategory=(category:string)=>{
-    const searchItem = category.toLowerCase();
-    setSearchValue(searchItem)
+   
+    setSearchValue(category)
 
   }
 

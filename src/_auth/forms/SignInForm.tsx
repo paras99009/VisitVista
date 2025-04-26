@@ -40,9 +40,8 @@ const SignInForm = () => {
     const isLoggedIn = await checkAuthUser();
 
     if (isLoggedIn) {
-      form.reset();
-
       navigate("/");
+      form.reset();
     } else {
       console.log({ title: "Login failed. Please try again.", });
       

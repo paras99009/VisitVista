@@ -11,7 +11,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { Input } from "@/components/ui/input"
 import { Textarea } from '../ui/textarea';
 import FormUploader from "./FormUploader";
@@ -32,7 +32,7 @@ const PostForm = ({ post, action } : PostFormProps) => {
 
 
   const {user} = useUserContext()
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
 
@@ -71,7 +71,7 @@ const PostForm = ({ post, action } : PostFormProps) => {
                   title:"PLease Try Again"
                 })
               }
-             navigate("/");
+            //  navigate("/");
       
       
       

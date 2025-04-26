@@ -22,21 +22,21 @@ function CardStats({ post, userId }: PostStatsProps) {
     const { mutate : likePosts } = useLikePost();
     const { mutate : savePost ,isPending:isSavingPost } = useSavePost();
     const { mutate : deleteSavedPost } = useDeleteSavedPost();
-
-
+    
     const { data : currentUser } = useGetCurrentUser();
     const savedPostRecord = currentUser?.save.find(
-        (record: Models.Document) => record.post?.$id === post?.$id
+        (record: Models.Document) => record.place?.$id === post?.$id
       );
      
       useEffect(() => {
-        if (currentUser) {
-            const savedPostRecord = currentUser?.save.find(
-                (record: Models.Document) => record.post?.$id === post?.$id
-            );
-            setIsSaved(!!savedPostRecord);  // Ensure it's set based on actual saved status
+        if (currentUser && post?.$id) {
+          const saved = currentUser.save?.some(
+            (record: Models.Document) => record.place.$id === post.$id
+          );
+          setIsSaved(saved);
         }
-    }, [currentUser]); 
+      }, [currentUser, post?.$id]);
+       
 
     const handleLikePost = (e: React.MouseEvent)=>{
       e.stopPropagation();
