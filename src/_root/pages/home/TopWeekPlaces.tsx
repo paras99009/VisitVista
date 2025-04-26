@@ -40,11 +40,12 @@ function TopWeekPlaces() {
             <Loader className="animate-spin text-primary" size={32} />
      
       ) : (
-        places.map((place,index) => ( 
-          index<8 &&
-          <div key={place.$id} className="w-full sm:w-[48%] md:w-[23%]">
-            <PlaceCard post={place} />
-          </div>
+        places.map((place, index) => (
+          index < 8 && (
+            <div key={place.$id} className="w-full sm:w-[48%] md:w-[23%] flex justify-center">
+              <PlaceCard post={place} />
+            </div>
+          )
         ))
       )
     }

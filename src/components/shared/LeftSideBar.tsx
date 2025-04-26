@@ -12,8 +12,9 @@ function LeftSideBar() {
  
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
+  
   const {user} = useUserContext();
+  const isAdmin = user.email = "test1@gmail.com"
 
 
 
@@ -33,7 +34,7 @@ function LeftSideBar() {
         </Link>
 
         
-        <Link to={`/profile/${user.id}`} className='flex items-center gap-3'>
+        <Link to={`${isAdmin ?'/dashboard/admin': '/profile/${user.id'}`} className='flex items-center gap-3'>
           <img src={user.imageUrl|| '/assets/images/profile-placeholder.svg'} alt="profile" className='h-8 w-8 rounded-full' />
             <div className='flex flex-col '>
                 <p className='body-bold'>{user.name}</p>    

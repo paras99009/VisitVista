@@ -39,7 +39,7 @@ function TopFavouritePLaces() {
           ) : (
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4">
               {places.map((place) => (
-                <div key={place.$id} className="w-full">
+                <div key={place.$id} className="flex justify-center w-full">
                   <PlaceCard post={place} />
                 </div>
               ))}

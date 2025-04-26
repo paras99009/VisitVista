@@ -11,6 +11,7 @@ function Topbar() {
 
     const navigate = useNavigate();
     const {user} = useUserContext();
+      const isAdmin = user.email = "test1@gmail.com"
 
     const handleLogOut = async ()=>{
         const isSuccess = await signOutAccount()
@@ -32,7 +33,7 @@ function Topbar() {
                     <img src="/assets/icons/logout.svg" alt="logout" />
 
                 </Button>
-                <Link to={`/profile/${user.id}`} className='flex-center gap-3'>
+                <Link to={`${isAdmin ?'/dashboard/admin': '/profile/${user.id'}`} className='flex-center gap-3'>
                 <img src={user.imageUrl|| '/assets/icons/profile-placeholder.svg'} alt="profile" className='h-8 w-8 rounded-full' />
                 </Link>
 

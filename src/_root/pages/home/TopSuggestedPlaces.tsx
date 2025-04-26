@@ -52,12 +52,12 @@ const TopSuggestedPlaces = () => {
         </div>
       ) : (
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4">
-          {place.map((place) => (
-            <div key={place.$id} className="w-full">
-              <PlaceCard post={place} />
-            </div>
-          ))}
-        </div>
+        {place.map((place) => (
+          <div key={place.$id} className="flex justify-center w-full">
+            <PlaceCard post={place} />
+          </div>
+        ))}
+      </div>
       )}
     </div>
   );

@@ -12,7 +12,8 @@ import { Button } from "@/components/ui/button";
 
 import { SignupValidation } from "@/validation";
 import { createUserAccount } from "@/lib/appwrite/api";
-import { MapPin } from "lucide-react";
+import { Loader, MapPin } from "lucide-react";
+import { useState } from "react";
 
 
 
@@ -23,6 +24,7 @@ const SignupForm = () => {
 //   const navigate = useNavigate();
 
 const navigate = useNavigate();
+const [ loading, setLoading] = useState(false)
 
 
   const form = useForm<z.infer<typeof SignupValidation>>({
@@ -40,6 +42,7 @@ const navigate = useNavigate();
   // Handler
   const handleSignup = async (user: z.infer<typeof SignupValidation>) => {
     try {
+      setLoading(true)
       const newUser = await createUserAccount({
         email: user.email,
         password: user.password,
@@ -49,13 +52,15 @@ const navigate = useNavigate();
 
       if (!newUser) throw new Error("User creation failed");
       // Optionally, you can set the user in a global state or context
-  
+       setLoading(false)
       console.log("User created:", newUser);
       navigate("/"); // or navigate to /home/dashboard
   
     } catch (error) {
       console.error("Signup failed:", error);
       // Optionally toast or display message
+    }finally{
+      setLoading(false)
     }
 
   };
@@ -137,11 +142,19 @@ const navigate = useNavigate();
 
           <p className="text-small-regular text-light-2 text-center mt-2">
             Already have an account?
-            <Link
-              to="/sign-in"
-              className="text-primary-500 text-small-semibold ml-1">
-              Log in
-            </Link>
+           {loading ? (
+           <Loader/>
+           ):(
+          
+           <Link
+             to="/sign-in"
+             className="text-primary-500 text-small-semibold ml-1">
+             Log in
+           </Link>
+          )
+           }
+
+            
           </p>
         </form>
       </div>
