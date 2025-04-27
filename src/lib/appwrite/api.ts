@@ -112,21 +112,23 @@ export async function getCurrentUser() {
 // ============================== SIGN IN
 export async function signInAccount(user: { email: string; password: string }) {
   try {
-      console.log("Checking session before signing in...");
-      const existingSession = await getAccount();
-      console.log("Existing session:", existingSession);
-      if(existingSession){
-          await account.deleteSessions(); 
-      }
-      const session = await account.createEmailPasswordSession(user.email, user.password);
-      console.log("New session created:", session);
+    console.log("Checking session before signing in...");
+    const existingSession = await getAccount();
+    console.log("Existing session:", existingSession);
 
-      // 🔥 Ensure Appwrite uses the session
-       // This should now work!
+    if (existingSession) {
+      await account.deleteSessions();
+    }
 
-      return session;
-  } catch (error) {
-      console.log(error);
+    const session = await account.createEmailPasswordSession(user.email, user.password);
+    console.log("New session created:", session);
+
+    return session;
+  } catch (error: any) {
+    console.error("Sign in error:", error);
+
+    // Optional: throw error so that caller (handleSignin) can show toast
+    throw new Error(error?.message || "Failed to sign in.");
   }
 }
 

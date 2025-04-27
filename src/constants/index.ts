@@ -40,8 +40,8 @@ export const sidebarLinks = [
       label: "Saved",
     },
     {
-      imgURL: "/assets/icons/gallery-add.svg",
-      route: "/ai-chatt",
+      imgURL: "/assets/images/artificial-intelligence-ai-icon.svg",
+      route: "/ai-chat",
       label: "AI Chat",
     },
   ];

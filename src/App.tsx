@@ -13,12 +13,18 @@ import Explore from './_root/pages/Explore'
 import PlaceDetails from './_root/pages/Placedetail'
 import AiChat from './_root/pages/AiChat'
 import Admin from './_root/pages/Admin'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
 
 
   return (
     <>
+      {/* Add ToastContainer here to display notifications */}
+      <ToastContainer />  
+
+
+
     <Routes>
 
       {/* auth Routes */}

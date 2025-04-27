@@ -20,7 +20,7 @@ function BottomBar() {
               alt={link.label}
               width={16}
               height={16}
-              className={`${isActive && "invert-white"}`}
+              className= "invert-white"
             />
 
             <p className="tiny-medium text-light-2">{link.label}</p>
