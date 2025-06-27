@@ -126,6 +126,8 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
           bio: currentAccount.bio,
         });
         setIsAuthenticated(true);
+        console.log("User is :", currentAccount.email); // ✅ correct
+
         console.log("User authenticated:", currentAccount);
         return true; // Explicitly return true
       }
@@ -146,6 +148,10 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     }
     checkAuthUser();
   }, []); // Empty dependency ensures it runs only once on mount
+
+  useEffect(() => {
+  console.log("User updated in context:", user.email);
+}, [user.email]);
 
   const value1 = {
     user,

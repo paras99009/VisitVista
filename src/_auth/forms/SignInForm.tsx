@@ -28,29 +28,30 @@ const SignInForm = () => {
     },
   });
   
-  const handleSignin = async (user: z.infer<typeof SigninValidation>) => {
-    setIsLoading(true);  // Show loader when login is in progress
-    
-    const session = await signInAccount(user);
-    console.log(session);
-    
-    if (!session) {
-      toast.error("Login failed. Please try again.");  // Using toast for error notification
-      setIsLoading(false);  // Hide loader
-      return;
-    }
+const handleSignin = async (user: z.infer<typeof SigninValidation>) => {
+  setIsLoading(true);
 
-    const isLoggedIn = await checkAuthUser();
-    form.reset();
+  const session = await signInAccount(user);
+  console.log(session, "this is session in signin form");
 
-    if (isLoggedIn) {
-      toast.success("Logged in successfully!");  // Success toast
-      navigate("/");
-    } else {
-      toast.error("Login failed. Please try again.");  // Error toast
-    }
-    setIsLoading(false);  // Hide loader
-  };
+  // 🔁 Wait a bit for the session to propagate before checking
+  await new Promise((res) => setTimeout(res, 1000)); // 1000ms delay
+
+  const isLoggedIn = await checkAuthUser();
+  console.log(isLoggedIn, "this is isLoggedIn in signin form");
+
+  form.reset();
+
+  if (isLoggedIn) {
+    toast.success("Logged in successfully!");
+    navigate("/"); // redirect after successful login
+  } else {
+    toast.error("Login failed. Please try again.");
+  }
+
+  setIsLoading(false);
+};
+
 
   return (
     <Form {...form}>

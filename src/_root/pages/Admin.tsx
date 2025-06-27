@@ -13,7 +13,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Admin() {
   const { user } = useUserContext();
-  const isAdmin = user.email === "test1@gmail.com";
+  console.log(user, "this is user in admin page");
+  let isAdmin = false;
+  if(user.email==="test1@gmail.com"){
+    isAdmin= true;
+  }
   const navigate = useNavigate();
 
   // Dummy queries (replace with actual query logic using Appwrite)
@@ -55,9 +59,9 @@ function Admin() {
 
       {/* Profile Section */}
      {/* Profile Section */}
-<div className="flex justify-between items-center bg-gray-900 p-6 rounded-xl shadow-md flex-wrap gap-6">
+<div className="flex  justify-between items-center bg-gray-900 p-6 rounded-xl shadow-md flex-wrap gap-6">
   <div className="flex items-center space-x-6">
-    <Avatar className="h-20 w-20">
+    <Avatar className="h-20 z-30 w-20" >
       <AvatarImage src={user.imageUrl} />
       <AvatarFallback className="text-2xl">{user.name?.[0]}</AvatarFallback>
     </Avatar>

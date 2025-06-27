@@ -22,7 +22,7 @@ function GridPostList({post , showUser=true , showStats= true} : GridPostListPro
 
         // if (!post?.imageUrl) return null; // Skip if imageUrl is not present
         return (
-          <li key={post.$id} className='relative min-w-80 h-80'>
+          <li key={post.$id} className='relative  min-w-80 h-80'>
             <Link to={`/places/${post.$id}`} className='grid-post_link'>
           
         <img

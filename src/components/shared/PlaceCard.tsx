@@ -16,7 +16,7 @@ const PlaceCard = ({ post }: PostCardProps) => {
   }
 
   return (
-    <div className="bg-dark-3 rounded-xl shadow-md w-[300px] h-[450px] flex flex-col overflow-hidden relative">
+    <div className="bg-dark-3   rounded-xl shadow-md w-[300px] h-[450px] flex flex-col overflow-hidden relative" style={{zIndex:-1}}>
       {/* Image */}
       <div className="relative w-full h-[180px]">
         <Link to={`/places/${post.$id}`}>

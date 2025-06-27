@@ -5,7 +5,7 @@ import { Link, NavLink, useNavigate,useLocation } from 'react-router-dom'
 
 import { sidebarLinks } from '@/constants';
 import { INavLink } from '@/types';
-import { signOutAccount } from '@/lib/appwrite/api';
+import {  signOutAccount } from '@/lib/appwrite/api';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 
@@ -17,7 +17,10 @@ function LeftSideBar() {
 
   
   const {user} = useUserContext();
-  const isAdmin = user.email == "test1@gmail.com"
+  console.log(user, "this is user in left sidebar");
+
+const isAdmin = user?.email === "test1@gmail.com";
+
 
 
 
@@ -37,7 +40,7 @@ function LeftSideBar() {
         </Link>
 
         
-        <Link to={`${isAdmin ? '/dashboard/admin' : `/profile/${user.id}`}`}  className='flex items-center gap-3'>
+        <Link to={isAdmin?'/dashboard/admin':'/'} className='flex items-center gap-3'>
           <img src={user.imageUrl|| '/assets/images/profile-placeholder.svg'} alt="profile" className='h-8 w-8 rounded-full' />
             <div className='flex flex-col '>
                 <p className='body-bold'>{user.name}</p>    
@@ -74,7 +77,7 @@ function LeftSideBar() {
   <p className='small-medium lg:base-medium'>Logout</p>
 </Button>
 {showLogoutModal && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-blue-100 bg-opacity-40 backdrop-blur-sm">
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-blue-100 bg-opacity-40 backdrop-blur-sm" >
     <div className="bg-white rounded-2xl shadow-xl p-8 w-80 flex flex-col items-center text-center space-y-6 animate-fadeIn">
       
       <div className="flex flex-col items-center space-y-2">
