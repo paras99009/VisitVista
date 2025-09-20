@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader, MapPin } from "lucide-react";
 
-import { useUserContext } from "@/context/AuthContext";
+// import { useUserContext } from "@/context/AuthContext";
 import { SigninValidation } from "@/validation";
 import { signInAccount } from "@/lib/appwrite/api";
 import { useState } from "react";
@@ -17,7 +17,7 @@ import { useState } from "react";
 const SignInForm = () => {
   
   const navigate = useNavigate();
-  const { checkAuthUser } = useUserContext();
+  // const { checkAuthUser } = useUserContext();
   const [isLoading, setIsLoading] = useState(false);  // State to manage login button loader
 
   const form = useForm<z.infer<typeof SigninValidation>>({
