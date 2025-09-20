@@ -19,7 +19,7 @@ function LeftSideBar() {
   const {user} = useUserContext();
   console.log(user, "this is user in left sidebar");
 
-const isAdmin = user?.email === "test1@gmail.com";
+const isAdmin = user?.email === "student@gmail.com";
 
 
 

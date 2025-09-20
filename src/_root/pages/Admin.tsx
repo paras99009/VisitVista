@@ -15,7 +15,7 @@ function Admin() {
   const { user } = useUserContext();
   console.log(user, "this is user in admin page");
   let isAdmin = false;
-  if(user.email==="test1@gmail.com"){
+  if(user.email==="student@gmail.com"){
     isAdmin= true;
   }
   const navigate = useNavigate();
