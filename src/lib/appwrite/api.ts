@@ -126,6 +126,7 @@ export async function signInAccount(user: { email: string; password: string }) {
     return session;
   } catch (error: any) {
     console.error("Sign in error:", error);
+    return false
 
     // Optional: throw error so that caller (handleSignin) can show toast
     throw new Error(error?.message || "Failed to sign in.");

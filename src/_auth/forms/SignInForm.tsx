@@ -37,12 +37,12 @@ const handleSignin = async (user: z.infer<typeof SigninValidation>) => {
   // 🔁 Wait a bit for the session to propagate before checking
   await new Promise((res) => setTimeout(res, 1000)); // 1000ms delay
 
-  const isLoggedIn = await checkAuthUser();
-  console.log(isLoggedIn, "this is isLoggedIn in signin form");
+  // const isLoggedIn = await checkAuthUser();
+  // console.log(isLoggedIn, "this is isLoggedIn in signin form");
 
   form.reset();
 
-  if (isLoggedIn) {
+  if (session) {
     toast.success("Logged in successfully!");
     navigate("/"); // redirect after successful login
   } else {
