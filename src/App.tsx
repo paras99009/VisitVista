@@ -14,6 +14,7 @@ import PlaceDetails from './_root/pages/Placedetail'
 import AiChat from './_root/pages/AiChat'
 import Admin from './_root/pages/Admin'
 import { ToastContainer } from 'react-toastify'
+import RequestPage from './_root/pages/RequestPage'
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
       <Route path="/explore/:mood" element={<Explore/>} />
       <Route path="/ai-chat" element={<AiChat/>} />
       <Route path="/places/:id" element={<PlaceDetails/>} />
+      <Route path="/placerequest" element={<RequestPage/>} />
     
       </Route>
     </Routes>

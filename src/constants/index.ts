@@ -21,6 +21,12 @@ export const sidebarLinks = [
       label: "AI Chat",
       color:"white"
     },
+    {
+      imgURL: "/assets/icons/send-white-icon.png",
+      route: "/placerequest",
+      label: "Request",
+      color:"white"
+    },
   ];
   
   export const bottombarLinks = [
@@ -43,5 +49,10 @@ export const sidebarLinks = [
       imgURL: "/assets/images/artificial-intelligence-ai-icon.svg",
       route: "/ai-chat",
       label: "AI Chat",
+    },
+    {
+      imgURL: "/assets/icons/send-white-icon.png",
+      route: "/placerequest",
+      label: "Request",
     },
   ];
