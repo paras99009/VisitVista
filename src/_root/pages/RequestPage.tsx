@@ -1,5 +1,12 @@
-import  { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+
+type CommentType = {
+  id: string;
+  userId: string;
+  text: string;
+  time: number;
+};
 
 type RequestType = {
   id: string;
@@ -7,11 +14,11 @@ type RequestType = {
   vibe: string;
   description: string;
   maxPeople: number;
-  joined: string[];         // storing userIds
+  joined: string[]; // array of userIds
   createdAt: number;
   whatsapp: string;
   creatorId: string;
-  comments: { id: string; userId: string; text: string; time: number }[];
+  comments: CommentType[];
 };
 
 export default function RequestsPage() {
@@ -22,11 +29,11 @@ export default function RequestsPage() {
   const [vibe, setVibe] = useState("");
   const [description, setDescription] = useState("");
   const [maxPeople, setMaxPeople] = useState(2);
-  const [whatsapp, setWhatsapp] = useState("");
 
+  const [whatsappNumber, setWhatsappNumber] = useState("");
   const [commentInputs, setCommentInputs] = useState<{ [key: string]: string }>({});
 
-  // Set userId one time
+  // Generate unique user ID if not present
   useEffect(() => {
     let uid = localStorage.getItem("userId");
     if (!uid) {
@@ -34,27 +41,23 @@ export default function RequestsPage() {
       localStorage.setItem("userId", uid);
     }
   }, []);
-
   const userId = localStorage.getItem("userId") || "";
 
-  // Load requests
- useEffect(() => {
-  const saved = localStorage.getItem("requests");
-  if (saved) {
-    const parsed: any[] = JSON.parse(saved);
+  // Load requests from storage & fix any old data format
+  useEffect(() => {
+    const saved = localStorage.getItem("requests");
+    if (saved) {
+      const parsed: any[] = JSON.parse(saved);
+      const fixed = parsed.map((r) => ({
+        ...r,
+        joined: Array.isArray(r.joined) ? r.joined : [],
+        comments: r.comments || []
+      }));
+      setRequests(fixed);
+      localStorage.setItem("requests", JSON.stringify(fixed));
+    }
+  }, []);
 
-    // Convert old saved data with "joined: number"
-    const fixed = parsed.map((r) => ({
-      ...r,
-      joined: Array.isArray(r.joined) ? r.joined : [],   // Ensure it is an array
-      comments: r.comments || []                          // Ensure comments exists
-    }));
-
-    setRequests(fixed);
-    localStorage.setItem("requests", JSON.stringify(fixed));
-  }
-}, []);
-  // Save requests
   const saveRequests = (data: RequestType[]) => {
     setRequests(data);
     localStorage.setItem("requests", JSON.stringify(data));
@@ -63,30 +66,31 @@ export default function RequestsPage() {
   const createRequest = () => {
     if (!place.trim()) return;
 
-    const newRequest: RequestType = {
+    const newReq: RequestType = {
       id: uuidv4(),
       place,
       vibe,
       description,
       maxPeople,
-      whatsapp,
+      whatsapp: whatsappNumber ? `https://wa.me/91${whatsappNumber}` : "",
+      createdAt: Date.now(),
       creatorId: userId,
       joined: [],
-      createdAt: Date.now(),
       comments: []
     };
 
-    saveRequests([newRequest, ...requests]);
+    saveRequests([newReq, ...requests]);
+
     setPlace("");
     setVibe("");
     setDescription("");
     setMaxPeople(2);
-    setWhatsapp("");
+    setWhatsappNumber("");
     setShowModal(false);
   };
 
   const joinRequest = (id: string) => {
-    const updated = requests.map(r =>
+    const updated = requests.map((r) =>
       r.id === id && r.joined.length < r.maxPeople && !r.joined.includes(userId)
         ? { ...r, joined: [...r.joined, userId] }
         : r
@@ -95,14 +99,14 @@ export default function RequestsPage() {
   };
 
   const deleteRequest = (id: string) => {
-    saveRequests(requests.filter(r => r.id !== id));
+    saveRequests(requests.filter((r) => r.id !== id));
   };
 
   const addComment = (id: string) => {
     const text = commentInputs[id]?.trim();
     if (!text) return;
 
-    const updated = requests.map(r =>
+    const updated = requests.map((r) =>
       r.id === id
         ? { ...r, comments: [...r.comments, { id: uuidv4(), userId, text, time: Date.now() }] }
         : r
@@ -120,8 +124,9 @@ export default function RequestsPage() {
 
   return (
     <div className="min-h-screen bg-black text-white p-6">
-      {/* Top Input to open modal */}
-      <div className="flex items-center gap-3 bg-[#151515] border border-purple-600 px-4 py-3 rounded-xl shadow-lg">
+
+      {/* Input trigger */}
+      <div className="flex items-center gap-3 bg-[#171717] border border-purple-600 px-4 py-3 rounded-xl shadow-lg">
         <input
           onClick={() => setShowModal(true)}
           placeholder="Create a request..."
@@ -130,7 +135,6 @@ export default function RequestsPage() {
         <button onClick={() => setShowModal(true)} className="text-purple-400 text-xl">➤</button>
       </div>
 
-      {/* Requests List */}
       <div className="mt-8 space-y-6">
         {requests.map((r) => {
           const joined = r.joined.includes(userId);
@@ -147,7 +151,6 @@ export default function RequestsPage() {
                 <span className="text-gray-400">Joined: {r.joined.length}/{r.maxPeople}</span>
               </div>
 
-              {/* Buttons */}
               <div className="flex gap-3 mt-4">
                 {joined && r.whatsapp && (
                   <a href={r.whatsapp} target="_blank" className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-xl transition">
@@ -197,7 +200,7 @@ export default function RequestsPage() {
         })}
       </div>
 
-      {/* Create Request Modal */}
+      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center backdrop-blur-sm">
           <div className="bg-[#0F0F0F] p-6 w-full max-w-lg border border-purple-700 rounded-xl space-y-3 animate-[fadeIn_0.2s]">
@@ -206,8 +209,18 @@ export default function RequestsPage() {
             <input value={place} onChange={e => setPlace(e.target.value)} placeholder="Place" className="w-full px-3 py-2 bg-black border border-purple-600 rounded-xl" />
             <input value={vibe} onChange={e => setVibe(e.target.value)} placeholder="Vibe / Mood" className="w-full px-3 py-2 bg-black border border-purple-600 rounded-xl" />
             <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Description..." className="w-full px-3 py-2 h-20 bg-black border border-purple-600 rounded-xl" />
+
             <input type="number" value={maxPeople} onChange={e => setMaxPeople(Number(e.target.value))} className="w-full px-3 py-2 bg-black border border-purple-600 rounded-xl" placeholder="Max People" />
-            <input value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="WhatsApp Link (optional)" className="w-full px-3 py-2 bg-black border border-purple-600 rounded-xl" />
+
+            {/* WhatsApp Number Input */}
+            <input
+              type="tel"
+              value={whatsappNumber}
+              onChange={(e) => setWhatsappNumber(e.target.value.replace(/\D/g, ""))}
+              placeholder="WhatsApp Number (optional)"
+              className="w-full px-3 py-2 bg-black border border-purple-600 rounded-xl"
+              maxLength={10}
+            />
 
             <div className="flex gap-3 mt-4">
               <button onClick={createRequest} className="w-full bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-xl">Post</button>
